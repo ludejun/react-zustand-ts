@@ -1,0 +1,20 @@
+@import '../../style.less';
+
+.button-list {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+
+.table-handlers {
+  color: @process-color;
+
+  span {
+    padding: 0 8px 0 0;
+    cursor: pointer;
+  }
+  span:not(:first-child) {
+    border-left: 1px solid @hr-color;
+    padding: 0 8px;
+  }
+}

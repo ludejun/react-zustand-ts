@@ -1,0 +1,166 @@
+.antd-table {
+  .table-border {
+    border: 1px solid #ecf3fc;
+  }
+
+  .remark-content {
+    line-height: 24px;
+  }
+
+  .ant-table-wrapper
+    .ant-table-container
+    table
+    > thead
+    > tr:first-child
+    > *:first-child,
+  .ant-table-wrapper
+    .ant-table-container
+    table
+    > thead
+    > tr:first-child
+    > *:last-child {
+    border-radius: 0;
+  }
+
+  .ant-table-thead > tr > th {
+    background: #ecf3fc;
+  }
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    border-bottom: none;
+  }
+  .ant-table-thead
+    > tr
+    > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    width: 0;
+  }
+  .ant-table tbody > tr:nth-child(2n) td {
+    background-color: #f6f9fd;
+  }
+  .ant-table tbody > tr:hover td {
+    background-color: #dbe9f9 !important;
+    // background-color:#D7E3F5 !important;
+  }
+
+  .ant-table-tbody .ant-table-placeholder {
+    display: none;
+  }
+
+  .light-row {
+    background: #fff !important;
+
+    .ant-table-cell {
+      background: unset !important;
+    }
+    // 不加这个，固定列时背景会透明
+    .ant-table-cell-fix-left,
+    .ant-table-cell-fix-right {
+      background: inherit !important;
+    }
+  }
+  .dark-row {
+    background: #f6f9fd !important;
+    .ant-table-cell-fix-left,
+    .ant-table-cell-fix-right {
+      background: inherit !important;
+    }
+  }
+}
+.ant-table.ant-table-small {
+  font-size: 12px !important;
+}
+
+.pagination-antd {
+  .ant-pagination-prev {
+    border: 1px solid #ddd;
+    margin-right: 10px !important;
+  }
+  .ant-pagination-next {
+    border: 1px solid #ddd;
+    margin-left: 10px !important;
+  }
+  .anticon {
+    vertical-align: 0em !important;
+  }
+}
+
+/*暂无数据样式*/
+.noData-container {
+  width: 100%;
+
+  .noData-content {
+    text-align: center;
+
+    .flex-box {
+      display: flex;
+      justify-content: center;
+
+      .animate-turn {
+        animation: turn-p 9s linear infinite;
+      }
+
+      .animate-turn-alternate {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        animation: turn-n 9s linear infinite;
+      }
+    }
+    .icon-noData {
+      color: #999999;
+    }
+    .icon-gear-big {
+      font-size: 36px;
+      color: #cccccc;
+    }
+    .icon-gear-sm {
+      font-size: 24px;
+      color: #cccccc;
+    }
+    p {
+      color: #999999;
+    }
+  }
+}
+
+@keyframes turn-p {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(90deg);
+  }
+  40% {
+    transform: rotate(180deg);
+  }
+  60% {
+    transform: rotate(270deg);
+  }
+  80% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes turn-n {
+  0% {
+    transform: rotate(360deg);
+  }
+  20% {
+    transform: rotate(270deg);
+  }
+  40% {
+    transform: rotate(180deg);
+  }
+  60% {
+    transform: rotate(90deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

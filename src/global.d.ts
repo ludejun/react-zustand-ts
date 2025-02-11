@@ -1,4 +1,6 @@
-// declare module 'csstype' {
-//   export const Properties: any;
-// }
-declare module 'whatwg-fetch';
+// declare module 'whatwg-fetch';
+
+interface Window {
+  APP_ENV: 'local' | 'mock' | 'dev' | 'prod';
+}
+declare var window: Window & typeof globalThis;

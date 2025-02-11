@@ -1,13 +1,13 @@
 // import '@babel/polyfill';
-import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import store from './store';
-import './index.less';
-import { DRoutes } from './routes';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
+import Routes from './routes';
 import Storage from './utils/Storage';
 import configs from './configs';
 import monitor from './utils/monitor';
+import { antdTheme } from './configs/antdConfigs';
+import './index.less';
 
 Storage.setNamespace(configs.name);
 monitor.init({
@@ -18,8 +18,7 @@ monitor.init({
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <Provider store={store}>
-    <DRoutes />
-  </Provider>
-  , 
+  <ConfigProvider locale={zhCN} theme={antdTheme}>
+    <Routes />
+  </ConfigProvider>
 );

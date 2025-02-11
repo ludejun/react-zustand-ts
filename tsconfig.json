@@ -5,7 +5,7 @@
     "target": "es5",
     "lib": ["es6", "dom"],
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx", // react-jsx用来支持 react17 后无需引入React 的功能，如填 react 则每个tsx文件仍需要显式引入 React
     "strict": true,
     "moduleResolution": "node",
     "baseUrl": ".", // 解决不识别path地址的问题
@@ -15,7 +15,7 @@
       "@/*": ["./src/*"]
     },
     "typeRoots": ["src", "node_modules/@types"],
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules",
@@ -24,7 +24,7 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts",
+    "src/setupTests.ts"
     // "configs/**/*"
   ],
   "types": ["typePatches"]

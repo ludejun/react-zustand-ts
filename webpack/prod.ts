@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
-import projectConfig, { Env } from '../src/configs';
+import projectConfig from '../src/configs';
 
 const loaders = [
   {
@@ -81,8 +81,8 @@ const config = {
   resolve: {
     extensions: ['.ts', '.tsx', '.web.js', '.js', '.jsx'],
     alias: {
-      '@': path.join(__dirname, '../src'),
-    },
+      '@': path.join(__dirname, '../src')
+    }
   },
   entry: {
     main: './src/index.tsx'
@@ -94,8 +94,8 @@ const config = {
     // 如使用CDN
     // publicPath: "http://cdn.example.com/assets/[hash]/"
     // 如有使用import()动态加载的代码打包
-    chunkFilename: '[name].bundle.js',
-    publicPath: projectConfig.staticUrl[(process.env.NODE_ENV || 'prod') as Env] // 生产要用
+    chunkFilename: '[name].bundle.js'
+    // publicPath: projectConfig.staticUrl[(process.env.NODE_ENV || 'prod') as Env] // 生产要用
   },
 
   module: {
@@ -106,7 +106,8 @@ const config = {
 
   plugins: [
     new webpack.DefinePlugin({
-      __MOCK: false
+      __MOCK: false,
+      APP_ENV: process.env.APP_ENV
     }),
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: ['release']

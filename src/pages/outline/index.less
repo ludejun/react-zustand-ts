@@ -1,0 +1,114 @@
+@import '../../style.less';
+.main-outline {
+  display: flex;
+  flex-direction: row;
+
+  .outline-left {
+    flex: 1;
+
+    .ant-segmented-item-selected {
+      font-weight: bold;
+    }
+    .home-base-desc {
+      line-height: 20px;
+      margin: 12px 0 20px;
+      .desc-link-button {
+        color: #fff;
+        background-color: @primary-color;
+        border-radius: 4px;
+        padding: 2px 8px;
+        margin-right: 8px;
+      }
+    }
+    .step-list {
+      display: flex;
+      flex-direction: row;
+      .step-title {
+        font-weight: bold;
+        line-height: 24px;
+      }
+      .simple-card-btw {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .step-divider {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgb(239, 239, 240);
+        padding-top: 18px;
+        width: 30px;
+
+        div {
+          margin-top: 8px;
+          width: 1px;
+          background-color: rgb(239, 239, 240);
+          flex: 1;
+        }
+      }
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: row;
+      .history-card {
+        flex: 1;
+        overflow: hidden;
+
+        .history-title {
+          font-size: 14px;
+          font-weight: bold;
+          line-height: 1.5;
+          margin-bottom: 8px;
+          .anticon {
+            font-size: 16px;
+          }
+        }
+        .ant-list-items {
+          padding: 0 8px;
+        }
+        .ant-list-item {
+          padding: 8px 0;
+          cursor: pointer;
+        }
+        .ant-list-item-meta-title,
+        .ant-list-item-meta-description {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .outline-right {
+    width: 338px;
+    margin-left: 16px;
+
+    .user-platform {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .status-card {
+        margin-bottom: 8px;
+      }
+    }
+    .drawer-menu {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .menu-item {
+        width: 50%;
+        cursor: pointer;
+        line-height: 28px;
+        .item-text {
+          margin-left: 8px;
+        }
+      }
+      .menu-item:hover {
+        color: @primary-color;
+      }
+    }
+  }
+}
