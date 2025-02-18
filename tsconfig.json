@@ -3,7 +3,7 @@
     "experimentalDecorators": true,
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": ["es6", "dom", "DOM.Iterable", "ESNext"],
     "allowJs": true,
     "jsx": "react-jsx", // react-jsx用来支持 react17 后无需引入React 的功能，如填 react 则每个tsx文件仍需要显式引入 React
     "strict": true,

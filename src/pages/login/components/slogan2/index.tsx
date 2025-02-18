@@ -1,4 +1,3 @@
-import React from 'react';
 import { QAPair } from './qa-pair';
 
 const qaPairs = [

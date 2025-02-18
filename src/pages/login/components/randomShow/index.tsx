@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 // import { randomIntRange } from '@/utils/utils';
 interface Props {
   children: React.ReactElement[];

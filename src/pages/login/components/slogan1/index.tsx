@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Slogan1 = () => (
   <div>
     <p className="title">Slogan1</p>

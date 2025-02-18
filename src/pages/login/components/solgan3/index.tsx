@@ -1,6 +1,5 @@
-import React from 'react';
-import './style.less';
 import { LineSpace } from '@/components';
+import './style.less';
 
 const values = [
   {

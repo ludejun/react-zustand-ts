@@ -5,6 +5,8 @@
 使用技术栈：
 React19 + React-Router7 + zustand + webpack5 + typescript + mock + eslint + prettier + fetch
 
+混合使用状态管理和 hooks 编程：只有确定为公共状态的使用 zustand，其他页面级一律使用 useRequest
+
 #### 项目命令行
 
 - 安装项目：`yarn install`

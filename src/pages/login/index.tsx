@@ -232,7 +232,8 @@ export const Login: FC = () => {
         password === 'abccba' &&
         phoneCode === '708807'
       ) {
-        Storage.setItem('userInfo', data);
+        console.log(4444, data);
+        Storage.setItem('userInfo', data || '');
         monitor.setUser(data?.loginCustNo || '');
         // 登录成功，更新qiankun全局状态
         // actions.setGlobalState({ userInfo: data });

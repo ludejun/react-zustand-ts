@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import getIP from './ip';
 import { isAndroidOrIOS } from '.';
 
@@ -55,7 +55,16 @@ class Monitor {
   }
 
   // 初始化
-  init({ appName, appVersion, headerName, apiUrl, maxStorage, custno, maccode, accptmd }: {
+  init({
+    appName,
+    appVersion,
+    headerName,
+    apiUrl,
+    maxStorage,
+    custno,
+    maccode,
+    accptmd
+  }: {
     headerName?: string;
     apiUrl: string;
     maxStorage?: number;
@@ -78,7 +87,9 @@ class Monitor {
     this.accptmd = accptmd || '';
     this.appVersion = appVersion || '';
     if (!this.apiServer) {
-      console.error('[Monitor报错]：埋点方法需要上报服务端URL，一般为请求1*1gif');
+      console.error(
+        '[Monitor报错]：埋点方法需要上报服务端URL，一般为请求1*1gif'
+      );
     }
 
     try {
@@ -96,7 +107,9 @@ class Monitor {
         if (macLocal) {
           this.maccode = macLocal;
         } else {
-          this.maccode = `${String(Date.now())}-${Math.floor(1e7 * Math.random())}-${Math.random()
+          this.maccode = `${String(Date.now())}-${Math.floor(
+            1e7 * Math.random()
+          )}-${Math.random()
             .toString(16)
             .replace('.', '')}`;
           window.localStorage.setItem('maccode', this.maccode);
@@ -125,7 +138,7 @@ class Monitor {
       if (this.ev.length > 0) {
         // 当this.baseInfo中无IP信息
         if (!this.baseInfo?.ip) {
-          getIP((ip) => (this.baseInfo!.ip = ip));
+          getIP(ip => (this.baseInfo!.ip = ip));
         }
         const request = new XMLHttpRequest();
         // request.responseType = 'blob';
@@ -135,7 +148,10 @@ class Monitor {
           encodeURIComponent(JSON.stringify({ ...this.baseInfo, ev: this.ev })),
         ); */
         request.onreadystatechange = () => {
-          if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+          if (
+            request.readyState === XMLHttpRequest.DONE &&
+            request.status === 200
+          ) {
             // 成功送达则清除数据
             this.ev = [];
             window.localStorage.setItem(this.storageName, '[]');
@@ -144,7 +160,9 @@ class Monitor {
             // console.error('[Monitor报错]：埋点上报不成功');
           }
         };
-        request.send(JSON.stringify({ loyalvalleylog: { ...this.baseInfo, ev: this.ev } }));
+        request.send(
+          JSON.stringify({ loyalvalleylog: { ...this.baseInfo, ev: this.ev } })
+        );
       }
     } catch (e) {
       console.log('[Monitor报错]', e);
@@ -179,7 +197,9 @@ class Monitor {
     if (!this.baseInfo) {
       // 用户
       if (this.custno === '') {
-        this.custno = (JSON.parse(window.localStorage.getItem('userInfo') || '{}')).custno || null;
+        this.custno =
+          JSON.parse(window.localStorage.getItem('userInfo') || '{}').custno ||
+          null;
       }
       // 设备指纹
       const ua = window.navigator.userAgent;
@@ -208,7 +228,10 @@ class Monitor {
         title: document.title || '',
         domain: document.domain || '',
         url: document.URL,
-        sc: window && window.screen && `${window.screen.width}X${window.screen.height}`, // 屏幕尺寸/分辨率
+        sc:
+          window &&
+          window.screen &&
+          `${window.screen.width}X${window.screen.height}`, // 屏幕尺寸/分辨率
         dpi: window.devicePixelRatio || '', // 设备像素比
         accptmd: this.accptmd // 终端类型 1 -> PC ;  2 -> iOS;  3 -> Android ;  4 -> H5;  5 -> 微信小程序
       };

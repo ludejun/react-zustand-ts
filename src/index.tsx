@@ -1,4 +1,5 @@
 // import '@babel/polyfill';
+// import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';

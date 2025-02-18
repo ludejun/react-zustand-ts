@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import { App } from './pages/App';
 import { Login } from './pages/login/index';
@@ -16,8 +15,8 @@ export default () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/" element={<App />} /> */}
+        <Route index path="/" element={<Login />} />
         <Route element={<Layout />}>
           <Route path="outline" index element={<Outline />} />
           <Route path="resource" element={<Resource />} />

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -26,7 +25,7 @@ export const Loading = (props: LoadingProps) => {
     color = '#DDDDDD',
     tip = '',
     showChildren = true,
-    wrapperClassName = '',
+    wrapperClassName = ''
   } = props;
   return (
     <div

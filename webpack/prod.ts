@@ -11,28 +11,20 @@ import projectConfig from '../src/configs';
 
 const loaders = [
   {
-    test: /\.jsx?$/,
-    exclude: /(node_modules)/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env', '@babel/preset-react']
-        // plugins: [['import', { libraryName: 'antd', style: 'css' }]], // `style: true` 会加载 less 文件
-      }
-    }
-  },
-  {
-    test: /\.tsx?$/,
+    test: /\.(js|jsx|ts|tsx)$/,
     exclude: /node_modules/,
     loader: 'babel-loader',
     options: {
-      presets: [
-        '@babel/preset-env',
-        '@babel/preset-react',
-        '@babel/preset-typescript'
-      ]
-      // plugins: [['import', { libraryName: 'antd', style: 'css' }]],
+      configFile: true, // ✅ 确保加载 .babelrc 或 babel.config.js
+      cacheDirectory: true // 启用缓存
     }
+    // options: {
+    //   presets: [
+    //     '@babel/preset-env',
+    //     '@babel/preset-react',
+    //     '@babel/preset-typescript'
+    //   ]
+    // }
   }, // 先解析ts和tsx，rule规则从下往上
   {
     test: /\.css$/,
@@ -86,7 +78,6 @@ const config = {
   },
   entry: {
     main: './src/index.tsx'
-    // vendor: ['react', 'react-dom']
   },
   output: {
     path: path.join(__dirname, '../release'),
@@ -107,7 +98,7 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       __MOCK: false,
-      APP_ENV: process.env.APP_ENV
+      APP_ENV: JSON.stringify(process.env.APP_ENV)
     }),
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: ['release']
@@ -133,65 +124,63 @@ const config = {
       alwaysWriteToDisk: true,
       favicon: path.join(__dirname, '../public/favicon.ico')
     }),
-    // new webpack.optimize.OccurenceOrderPlugin(),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
       filename: '[name].[chunkhash].css',
       chunkFilename: '[id].min.css'
-    }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compressor: {
-    //     warnings: false,
-    //     screw_ie8: true,
-    //   },
-    // }),
-    new webpack.optimize.AggressiveMergingPlugin()
+    })
+    // new webpack.optimize.AggressiveMergingPlugin()
     // new BundleAnalyzerPlugin({ analyzerPort: 5593 }),
   ],
 
-  // // 防止将某个模块打包到bundle中，如从CDN引入react而不是将它打包
-  // externals: {
-  //   react: 'react',
+  // // 当包体积过大时(超250kb)，将展示一条错误(警告)
+  // performance: {
+  //   maxAssetSize: 1000000,
+  //   hints: 'warning'
   // },
 
-  // 当包体积过大时(超250kb)，将展示一条错误(警告)
-  performance: {
-    maxAssetSize: 1000000,
-    hints: 'warning'
-  },
-
-  // 类似CommonsChunkPlugin拆分公共代码
   optimization: {
     splitChunks: {
       chunks: 'all',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
       cacheGroups: {
-        cached: {
-          test: /[\\/]node_modules[\\/](react|react-dom|core-js)[\\/]/,
-          chunks: 'all',
-          name: 'cached',
-          filename: 'cached.bundle.js' // 直接写死文件名，不加hash
-        },
-        vendors: {
-          // 在output中加hash
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
+          name: 'vendors'
         }
       }
-    }
+    },
+    runtimeChunk: 'single'
   }
+  // // 类似CommonsChunkPlugin拆分公共代码
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     minSize: 30000,
+  //     maxSize: 0,
+  //     minChunks: 1,
+  //     maxAsyncRequests: 5,
+  //     maxInitialRequests: 3,
+  //     automaticNameDelimiter: '~',
+  //     // name: true,
+  //     cacheGroups: {
+  //       cached: {
+  //         test: /[\\/]node_modules[\\/](react|react-dom|core-js)[\\/]/,
+  //         chunks: 'all',
+  //         name: 'cached',
+  //         filename: 'cached.bundle.js' // 直接写死文件名，不加hash
+  //       },
+  //       vendors: {
+  //         // 在output中加hash
+  //         test: /[\\/]node_modules[\\/]/,
+  //         priority: -10
+  //       },
+  //       default: {
+  //         minChunks: 2,
+  //         priority: -20,
+  //         reuseExistingChunk: true
+  //       }
+  //     }
+  //   }
+  // }
 };
 
 module.exports = config;
