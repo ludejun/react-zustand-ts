@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router';
-import { App } from './pages/App';
+// import { App } from './pages/App';
 import { Login } from './pages/login/index';
 import { Layout } from './pages/layout';
 import { DataSource } from './pages/dataIntegration/dataSource';
@@ -9,7 +9,10 @@ import { Resource } from './pages/resource';
 import { WorkSpaces } from './pages/workSpaces';
 import { Workflow } from './pages/dataStudio/workflow';
 import { DataMap } from './pages/dataGovern/map';
-import { DataQuality } from './pages/dataGovern/quality';
+import { PurchasedResources } from './pages/purchasedResources';
+import { SQLSearch } from './pages/dataAnalysis/sqlSearch';
+import { Dashboard } from './pages/dataGovern/quality/Dashboard';
+import { Rules } from './pages/dataGovern/quality/Rules';
 
 export default () => {
   return (
@@ -20,6 +23,7 @@ export default () => {
         <Route element={<Layout />}>
           <Route path="outline" index element={<Outline />} />
           <Route path="resource" element={<Resource />} />
+          <Route path="purchased" element={<PurchasedResources />} />
           <Route path="spaces" element={<WorkSpaces />} />
 
           <Route>
@@ -33,7 +37,14 @@ export default () => {
 
           <Route>
             <Route path="dataMap" element={<DataMap />} />
-            <Route path="dataQuality" element={<DataQuality />} />
+            <Route path="dataQuality">
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="rules" element={<Rules />} />
+            </Route>
+          </Route>
+
+          <Route>
+            <Route path="sqlSearch" element={<SQLSearch />} />
           </Route>
         </Route>
       </Routes>

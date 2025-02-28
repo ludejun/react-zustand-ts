@@ -6,7 +6,6 @@ import {
   BlockOutlined,
   CodeOutlined,
   DatabaseOutlined,
-  DownOutlined,
   FilterOutlined,
   NodeIndexOutlined,
   SearchOutlined

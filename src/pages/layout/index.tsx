@@ -1,6 +1,6 @@
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { AppstoreOutlined, ClusterOutlined, CodeOutlined, DatabaseOutlined, GatewayOutlined, HomeOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, ClusterOutlined, CodeOutlined, ConsoleSqlOutlined, DatabaseOutlined, GatewayOutlined, HomeOutlined, ShoppingOutlined } from '@ant-design/icons';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Header } from './header';
 import './index.less'
@@ -23,6 +23,11 @@ export const Layout = () => {
       key: '/resource',
       label: '资源组',
       icon: <ClusterOutlined />,
+    },
+    {
+      key: '/purchased',
+      label: '已购资源与服务',
+      icon: <ShoppingOutlined />,
     },
     {
       key: '/spaces',
@@ -52,25 +57,39 @@ export const Layout = () => {
       icon: <GatewayOutlined />,
       children: [
         { key: '/dataMap', label: '数据地图' },
-        { key: '/dataQuality', label: '数据质量' },
+        { key: '/dataQuality', label: '数据质量', children: [
+          {key:'/dataQuality/dashboard', label: '质量大盘'},{key:'/dataQuality/rules', label: '规则列表'}
+        ] },
+      ],
+    },
+    {
+      key: 'dataAnalysis',
+      label: '数据分析',
+      icon: <ConsoleSqlOutlined />,
+      children: [
+        { key: '/sqlSearch', label: 'SQL查询' },
       ],
     },
   ];
-  const findParentKey = (target) => {
+  const findParentKeys = (target: string) => {
     const map = {};
-    items.forEach(item => {
-      if (item && item.children && item.children.length > 0) {
-        item.children.forEach(child => {
-          map[child?.key] = item.key;
-        })
-      }
-    })
+    const findParent = (arr, parent) => {
+      arr.forEach(item => {
+        if (item && item.children && item.children.length > 0) {
+          map[item.key] = [...(map[parent] || []), parent];
+          return findParent(item.children, item.key);
+        }
+        map[item.key] = [...(map[parent] || []), parent];
+      })
+    }
+    
+    findParent(items, null);
     return map[target];
   }
 
   useEffect(() => {
     setSelectedKeys([window.location.pathname]);
-    setOpenKeys([findParentKey(window.location.pathname)])
+    setOpenKeys(findParentKeys(window.location.pathname))
   }, [window.location.pathname])
   
   // const map = {

@@ -1,0 +1,60 @@
+@import '../../../style.less';
+
+.sql-search-cont {
+  .left-menu {
+    width: 300px;
+  }
+  .ant-tabs-nav {
+    margin: 0; // TODO 临时去除
+  }
+  .sql-search-main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .analysis-handler {
+      width: 100%;
+      border-bottom: 1px solid @hr-color;
+      display: flex;
+      flex-direction: row;
+      padding: 8px 16px 8px;
+      height: 40px;
+    }
+
+    .sql-cont {
+      flex: 1;
+      border-bottom: 1px solid @hr-color;
+      .cm-theme-light {
+        height: 100%;
+      }
+    }
+    .sql-result {
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+
+      .ant-tabs-nav-wrap {
+        margin-left: 29px;
+        height: 28px;
+      }
+      .result-zone {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+
+        .left-handler {
+          display: flex;
+          flex-direction: column;
+          width: 30px;
+          border-right: 1px solid @hr-color;
+          .handler-item {
+            height: 30px;
+            cursor: pointer;
+          }
+          .handler-item.active {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+}

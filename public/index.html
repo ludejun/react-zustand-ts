@@ -39,6 +39,7 @@
     -->
   </body>
   <script>
+    // 解决生产打包会出现$RefreshSig$ is not defined问题，应该是热更新插件问题
     window.$RefreshReg$ = () => {};
     window.$RefreshSig$ = () => () => {};
   </script>

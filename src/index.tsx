@@ -3,12 +3,16 @@
 import { createRoot } from 'react-dom/client';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import Routes from './routes';
 import Storage from './utils/Storage';
 import configs from './configs';
 import monitor from './utils/monitor';
 import { antdTheme } from './configs/antdConfigs';
 import './index.less';
+
+dayjs.locale('zh-cn');
 
 Storage.setNamespace(configs.name);
 monitor.init({

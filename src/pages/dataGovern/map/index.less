@@ -1,0 +1,159 @@
+@import '../../../style.less';
+
+.map-card {
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(239, 239, 240, 1);
+  min-height: calc(100vh - 24px - @header-height);
+  display: flex;
+
+  .map-search {
+    display: flex;
+
+    .left-menu {
+      width: 206px;
+      // height: calc(100vh - 26px - @header-height);
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid @hr-color;
+
+      .options {
+        padding: 12px;
+
+        .title {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
+
+        .ant-menu {
+          border: none;
+        }
+        .ant-menu-item {
+          height: 28px;
+          line-height: 28px;
+          font-size: 12px;
+        }
+        .ant-select-selection-wrap {
+          font-size: 12px;
+        }
+      }
+      .options:last-child {
+        border-top: 1px solid @hr-color;
+      }
+    }
+
+    .right-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px;
+
+      .search-select {
+        align-items: center;
+      }
+      .space-title {
+        margin-left: 8px;
+      }
+      .handle-text {
+        margin-left: 4px;
+      }
+      .ant-list-item {
+        cursor: pointer;
+        padding: 16px 0;
+      }
+      .ant-list-item:hover {
+        .ant-list-item-meta-title {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+
+  .space-config {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+
+    .space-header {
+      min-height: 76px;
+      border-bottom: 1px solid @hr-color;
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 16px;
+
+      .space-logo {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        background-color: rgba(93, 134, 255, 0.1);
+        color: @primary-color;
+        margin-right: 16px;
+        border-radius: 4px;
+      }
+      .desc-cont {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 12px;
+
+        .space-title {
+          margin: 0 0 8px;
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: 500;
+        }
+        button {
+          margin-right: 8px;
+        }
+      }
+    }
+    .space-main {
+      padding-top: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+
+      .home-card {
+        width: 320px;
+        border: none;
+        padding: 0 16px 0 0;
+        border-right: 1px solid @hr-color;
+
+        .space-item {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          .item-value {
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+          }
+          // .item-label {
+          //   font-size: 12px;
+          // }
+        }
+        .info-list {
+          padding-top: 16px;
+        }
+      }
+      .table-cont {
+        flex: 1;
+        padding-left: 16px;
+
+        .table-name {
+          cursor: pointer;
+          color: @process-color;
+        }
+
+        .table-handler {
+          align-items: center;
+          button {
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+  }
+}
